@@ -8,7 +8,8 @@ use Illuminate\support\Facades\DB;
 class StudentController extends Controller
 {
     public function index(){
-        $mahasiswa = DB::table('mahasiswa')->get();
+        // $mahasiswa = DB::table('mahasiswa')->get();
+		$mahasiswa=DB::table('mahasiswa')->paginate(10);
         return view('student.index',['mahasiswa'=>$mahasiswa]);
 
     }
@@ -52,5 +53,11 @@ class StudentController extends Controller
 		DB::table('mahasiswa')->where('nim', $nim)->delete();
 
 		return redirect('student');
+	}
+
+	public function search(Request $req){
+		$search = $req->search;
+		$mahasiswa = DB::table('mahasiswa')->where("nama","like","%".$search."%")->paginate();
+		return view('student.index',['mahasiswa'=>$mahasiswa]);
 	}
 }

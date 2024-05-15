@@ -34,3 +34,4 @@ Route::post('/student/addsave',[StudentController::class,'addsave']);
 Route::get('/student/edit/{nim}',[StudentController::class,'edit']);
 Route::post('/student/editsave',[StudentController::class,'editsave']);
 Route::get('/student/delete/{nim}',[StudentController::class,'delete']);
+Route::get('/student/search',[StudentController::class,'search']);
